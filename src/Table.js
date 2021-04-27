@@ -19,8 +19,8 @@ class Table extends React.Component {
       playerCardList: [],
       dealerCardList: [],
       startGame: false,
-      premierLance: "yes",
       endGame: false,
+      lose:false,
       nameOfWinner: ""
     }
   }
@@ -94,10 +94,22 @@ class Table extends React.Component {
     const valueCarte = transformCardIntoInt(cardSelected.split("")[0])
     const totalPlayerValue = this.state.counterPlayer + valueCarte
 
+
+    let endGamelose = {
+      lose: false,
+    }
+    if (totalPlayerValue > 21) {
+      endGamelose = {
+        lose: true,
+      }
+    }
+
     this.setState({
+      lose:endGamelose.lose,
       counterPlayer: totalPlayerValue,
       playerCardList: [...this.state.playerCardList, cardSelected]
     })
+    
   }
   transformCardIntoInt(cardValue) {
   startGame = () => {
@@ -126,8 +138,6 @@ class Table extends React.Component {
       )
     } else {
       return (<div>
-=======
->>>>>>> fx-modifs-abdou3
 
   renderGame() {
     return (
@@ -135,12 +145,18 @@ class Table extends React.Component {
         <div className="playGame">
           <div style={{ height: '100vh', position: 'relative' }}>
             <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-            <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
+            <div>
+              <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
+            </div>
             {this.state.endGame && (<div className='winlost'>
               <h1>Winner is {this.state.nameOfWinner}</h1>
             </div>)}
-            <Cartes key={"player"} cardList={this.state.playerCardList} />
-
+            <div >
+              <Cartes key={"player"} cardList={this.state.playerCardList} />
+            </div>
+            {this.state.lose && (<div className='winlost'>
+              <h1>you lose hhh</h1>
+            </div>)}
             <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
               <div className="d-grid gap-2">
                 <Button
