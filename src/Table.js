@@ -162,6 +162,7 @@ class Table extends React.Component {
     })
   }
 
+<<<<<<< HEAD
   render() {
     if (this.state.startGame == false) {
       return (
@@ -169,7 +170,12 @@ class Table extends React.Component {
       )
     } else {
       return (<div>
+=======
+>>>>>>> fx-modifs-abdou3
 
+  renderGame() {
+    return (
+      <div>
         <div className="playGame">
           <div style={{ height: '100vh', position: 'relative' }}>
             <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
@@ -205,7 +211,19 @@ class Table extends React.Component {
           </div>
         </div>
       </div>
+
+    )
+  }
+  render() {
+    if (this.state.startGame == false) {
+      return (
+        <Game startGame={this.startGame} />
       )
+    } else {
+      return <div>
+        {this.renderGame()}
+      </div>
+      
     }
   }
 }
