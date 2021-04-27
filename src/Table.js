@@ -146,14 +146,10 @@ class Table extends React.Component {
     })
   }
 
-  render() {
-    if (this.state.startGame == false) {
-      return (
-        <Game startGame={this.startGame} />
-      )
-    } else {
-      return (<div>
 
+  renderGame() {
+    return (
+      <div>
         <div className="playGame">
           <div style={{ height: '100vh', position: 'relative' }}>
             <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
@@ -189,7 +185,19 @@ class Table extends React.Component {
           </div>
         </div>
       </div>
+
+    )
+  }
+  render() {
+    if (this.state.startGame == false) {
+      return (
+        <Game startGame={this.startGame} />
       )
+    } else {
+      return <div>
+        {this.renderGame()}
+      </div>
+      
     }
   }
 }
