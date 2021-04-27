@@ -9,7 +9,7 @@ class Cartes extends React.Component {
       <div className="cartes">
         {this.props.cardList.map(
           function (carteFaceValue) {
-            const url = "https://deckofcardsapi.com/static/img/" + carteFaceValue + "." + "png"
+            let url = "https://deckofcardsapi.com/static/img/" + carteFaceValue + "." + "png"
             return (
               <img src={url}
                 style={{ height: 150, width: 100 }} />
